@@ -3,11 +3,6 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
 class DishDetail extends Component {
-    // Constructor of DishDetail class
-    constructor(props) {
-        super(props);
-    }
-
     // renderDish method
     renderDish(dish) {
         // Checking if the dish is null, so we catch the possible error 
@@ -42,7 +37,7 @@ class DishDetail extends Component {
                         <div key={elem.id}>
                             <ul className="list-unstyled">
                                 <li>{elem['comment']}<br></br><br></br></li>
-                                <li>-- {elem['author']} {elem['date']}</li>
+                                <li>-- {elem['author']} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(elem['date'])))}</li>
                             </ul>
                         </div>   
                     
@@ -70,9 +65,11 @@ class DishDetail extends Component {
         // is possible and without errors
         if(this.props.dish != null) {
             return (
-                <div className="row">
-                    {this.renderDish(this.props.dish)}
-                    {this.renderComments(this.props.dish.comments)}
+                <div className="container">
+                    <div className="row">
+                        {this.renderDish(this.props.dish)}
+                        {this.renderComments(this.props.dish.comments)}
+                    </div>
                 </div>
             );
         }
