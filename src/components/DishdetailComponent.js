@@ -1,10 +1,9 @@
 // Importing components
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
-class DishDetail extends Component {
     // renderDish method
-    renderDish(dish) {
+    function RenderDish({dish}) {
         // Checking if the dish is null, so we catch the possible error 
         // returning an empty div
         if(dish != null) {
@@ -28,7 +27,7 @@ class DishDetail extends Component {
     }
 
     // renderComments method
-    renderComments(comment) {
+    function RenderComments({comment}) {
         // Checking if the comments array is null, so I can prevent a possible error
         if(comment != null) {
             // Mapping all the components for printing them on screen
@@ -58,17 +57,16 @@ class DishDetail extends Component {
             );    
         }
     }
-        
-    // Rendering the DishDetail component
-    render() {
+    
+    const DishDetail = (props) => {
         // If the this is not null, we call the above methods so the rendering
         // is possible and without errors
-        if(this.props.dish != null) {
+        if(props.dish != null) {
             return (
                 <div className="container">
                     <div className="row">
-                        {this.renderDish(this.props.dish)}
-                        {this.renderComments(this.props.dish.comments)}
+                        <RenderDish dish={props.dish} />
+                        <RenderComments comments={props.dish.comments} />
                     </div>
                 </div>
             );
@@ -79,7 +77,6 @@ class DishDetail extends Component {
             );
         }
     }
-}
 
 // Making DishDetail component exportable
 export default DishDetail;
