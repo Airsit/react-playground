@@ -13,9 +13,11 @@ function RenderLeader({leaders}) {
                 {leaders.map((leader) => {
                     return (
                         <Media list key={leader.id}>
-                            <Media className="pull-left mb-4">
-                                {/* Placing the leader's image */}
-                                <Media object src={leader.image} />
+                            <Media className="mb-4">
+                                <Media left>
+                                    {/* Placing the leader's image */}
+                                    <Media object src={leader.image} />
+                                </Media>
 
                                 {/* Placing the leader's informations */}
                                 <Media body className="ml-4">
