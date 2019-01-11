@@ -9,7 +9,7 @@ import DishDetail from './DishdetailComponent';
 import About from './AboutComponent';
 import Footer from './FooterComponent';
 import { connect } from 'react-redux';
-import { addComment } from '../redux/ActionCreators';
+import { addCommen, fetchDishes } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
 	return {
@@ -20,14 +20,17 @@ const mapStateToProps = state => {
 	}
 }
 
-const mapDispatchToProps = dispatch => ({
-  
-    addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment))
-  
+const mapDispatchToProps = dispatch => ({ 
+	addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
+	fetchDishes: () => {dispatch(fetchDishes())} 
   });
 
 // Main Component
 class Main extends Component {
+	componentDidMount() {
+		this.props.fetchDishes();
+	}
+
   	render() {
 		// Renders the homepage's featured elements
 		const HomePage = () => {
