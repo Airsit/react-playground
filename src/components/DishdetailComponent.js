@@ -29,7 +29,7 @@ class CommentForm extends Component {
     // Submit event
     handleSubmit(values) {
         this.toggleModalComments();
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     // Modal toggle event
@@ -131,7 +131,7 @@ function RenderDish({dish}) {
 }
 
 // renderComments method
-function RenderComments({comments, addComment, dishId}) {
+function RenderComments({comments, postComment, dishId}) {
     // Checking if the comments array is null, so I can prevent a possible error
     if(comments != null) {
         // Rendering the comments
@@ -151,7 +151,7 @@ function RenderComments({comments, addComment, dishId}) {
                     })}
                 </ul>
                 {/* Calling the CommentForm component */}
-                <CommentForm dishId={dishId} addComment={addComment} />
+                <CommentForm dishId={dishId} postComment={postComment} />
             </div>
         );
     }
@@ -209,7 +209,7 @@ const DishDetail = (props) => {
 
                 <div className="row">
                     <RenderDish dish={props.dish} />
-                    <RenderComments comments={props.comments} addComment={props.addComment} dishId={props.dish.id} />
+                    <RenderComments comments={props.comments} postComment={props.postComment} dishId={props.dish.id} />
                 </div>
             </div>
         );
