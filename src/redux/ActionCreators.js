@@ -52,12 +52,6 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
 
 };
 
-// Add feedback action
-export const addFeedback = (feedback) => ({
-    type: ActionTypes.ADD_FEEDBACKS,
-    payload: feedback
-})
-
 // Post feedback action
 export const postFeedback = (firstname, lastname, telnum, email, agree, contactType, message) => (dispatch) => {
 
@@ -98,9 +92,7 @@ export const postFeedback = (firstname, lastname, telnum, email, agree, contactT
         })
 
         .then(response => response.json())
-
-        .then(response => dispatch(addFeedback(response)))
-        
+   
         .catch(error => error.message);
 };
 
