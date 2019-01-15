@@ -1,3 +1,4 @@
+// Comments list
 export const COMMENTS = 
 [
     {

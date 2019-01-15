@@ -1,41 +1,58 @@
 // Imports
 import React from 'react';
+
+// Components
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../shared/baseUrl';
+import { Loading } from './LoadingComponent';
+import { Fade, Stagger } from 'react-animation-components';
 
 // Functional Component RenderLeader
-function RenderLeader({leaders}) {
-    // Checking if there are any leaders
-    if(leaders != null) {
+function RenderLeader({leaders, isLoading, errMess}) {
+    // Loading leaders
+    if(isLoading) {
+        return(
+            <Loading/>
+        );
+    }
+    
+    // If the leaders are not found, generate an error message.
+    else if(errMess) {
+        return(
+            <h4>{errMess}</h4>
+        );
+    }
+
+    // Otherwise show leaders
+    else {
         return(
             // Mapping all the leaders
             <div className="col-12">
-                {leaders.map((leader) => {
-                    return (
-                        <Media list key={leader.id}>
-                            <Media className="mb-4">
-                                <Media left>
-                                    {/* Placing the leader's image */}
-                                    <Media object src={leader.image} />
-                                </Media>
+                <Stagger in>
+                    {leaders.map((leader) => {
+                        return (        
+                            <Fade in>
+                                <Media list key={leader.id}>
+                                    <Media className="mb-4">
+                                        <Media left>
+                                            {/* Placing the leader's image */}
+                                            <Media object src={baseUrl + leader.image} />
+                                        </Media>
 
-                                {/* Placing the leader's informations */}
-                                <Media body className="ml-4">
-                                    <h4>{leader.name}</h4>
-                                    <p>{leader.designation}</p>
-                                    <p>{leader.description}</p>
+                                        {/* Placing the leader's informations */}
+                                        <Media body className="ml-4">
+                                            <h4>{leader.name}</h4>
+                                            <p>{leader.designation}</p>
+                                            <p>{leader.description}</p>
+                                        </Media>
+                                    </Media>
                                 </Media>
-                            </Media>
-                        </Media>
-                    );
-                })}
+                            </Fade>
+                        );
+                    })}
+                </Stagger>
             </div>
-        );
-    }
-    // If there aren't any leaders, it places an empty div in the page
-    else {
-        return(
-            <div></div>
         );
     }
 }
@@ -44,7 +61,7 @@ function RenderLeader({leaders}) {
 function About(props) {
 
     // Updated leaders constant that contains the functional component
-    const leaders = <RenderLeader leaders={props.leaders} />;
+    const leaders = <RenderLeader leaders={props.leaders.leaders} isLoading={props.leaders.isLoading} errMess={props.leaders.errMess} />;
 
     return(
         <div className="container">

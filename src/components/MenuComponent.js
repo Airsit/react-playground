@@ -6,7 +6,7 @@ import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 
 // Functional Component RenderMenuItem
-function RenderMenuItem({ dish, onClick }) {
+function RenderMenuItem({dish}) {
     return ( 
         /* Saving the selected dish */
         <Card>

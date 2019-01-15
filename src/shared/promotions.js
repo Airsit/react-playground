@@ -1,3 +1,4 @@
+// Promotions list
 export const PROMOTIONS = [
     {
       id: 0,

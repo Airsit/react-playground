@@ -1,9 +1,10 @@
-// Imports
+// Imports && Components
 import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem, Button, Label, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, Form, Errors } from 'react-redux-form';
 
+// Validators
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => (val) && (val.length >= len);
@@ -18,9 +19,11 @@ class Contact extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);    
     }
 
+    // Handle Submit Event
     handleSubmit(values) {
         console.log("Current State is: " + JSON.stringify(values));
         alert("Current State is: " + JSON.stringify(values));
+        this.props.postFeedback(values.firstname, values.lastname, values.telnum, values.email, values.agree, values.contactType, values.message);
         this.props.resetFeedbackForm();
     }
 
@@ -28,6 +31,7 @@ class Contact extends Component {
         // Returns the Contact's View
         return(
             <div className="container">
+                {/* Breadcrumb Section */}
                 <div className="row">
                     <Breadcrumb>
                         <BreadcrumbItem>
@@ -45,8 +49,8 @@ class Contact extends Component {
                     </div>
                 </div>
 
+                {/* Location Information Section */}
                 <div className="row row-content">
-                    {/* Location Information Section */}
                     <div className="col-12">
                         <h3>Location Information</h3>
                     </div>
@@ -79,6 +83,7 @@ class Contact extends Component {
                     </div>
                 </div>
 
+                {/* Feedback Form */}
                 <div className="row row-content">
                     <div className="col-12">
                         <h3>Send us Your Feedback</h3>

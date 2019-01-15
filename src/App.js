@@ -1,3 +1,4 @@
+// Imports && Components
 import React, { Component } from 'react';
 import Main from './components/MainComponent';
 import './App.css';

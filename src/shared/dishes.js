@@ -1,3 +1,4 @@
+// Dishes list
 export const DISHES =
     [
         {

@@ -1,3 +1,4 @@
+// Starting values for feedbacks
 export const InitialFeedback = {
     firstname: '',
     lastname: '',
